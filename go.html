@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asesorias AG</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background-color:#f4f4f4;
+}
+
+/* ===== BANNER ===== */
+.banner{
+    position: relative;
+}
+
+.banner img{
+    width:100%;
+    height:220px;      /* ← AJUSTA AQUÍ LA ALTURA */
+    object-fit:cover;
+
+}
+
+/* TEXTO SOBRE EL BANNER */
+.banner-texto{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    color:white;
+    text-align:center;
+    background: rgba(0,0,0,0.5);
+    padding:20px 30px;
+    border-radius:10px;
+}
+
+.banner-texto h1{
+    margin:0;
+    font-size:36px;
+}
+
+.banner-texto p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+/* ===== CONTENEDOR ===== */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px;
+}
+
+/* ===== SERVICIOS ===== */
+.servicios{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:25px;
+}
+
+.servicio{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.servicio img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.servicio-header{
+    padding:15px;
+    font-weight:bold;
+    font-size:18px;
+    display:flex;
+    justify-content:space-between;
+    cursor:pointer;
+}
+
+.flecha{
+    transition: transform 0.3s;
+}
+
+/* CONTENIDO DESPLEGABLE */
+.servicio-contenido{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+    padding:0 15px;
+}
+
+.servicio.activo .servicio-contenido{
+    max-height:500px;
+    padding-bottom:15px;
+}
+
+.servicio.activo .flecha{
+    transform:rotate(180deg);
+}
+
+.precio{
+    font-size:22px;
+    color:#0a7cff;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+/* ===== BOTÓN WHATSAPP ===== */
+.whatsapp{
+    display:inline-block;
+    padding:12px 20px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+/* WHATSAPP FLOTANTE */
+.whatsapp-float{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px 18px;
+    border-radius:50%;
+    font-size:24px;
+    text-decoration:none;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    z-index:999;
+}
+
+/* ===== CARRUSEL MANUAL ===== */
+.carousel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.carousel-track{
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    width: 700px; /* ← ancho visible del carrusel */
+}
+
+.carousel-track a{
+    flex: 0 0 auto;
+}
+.carousel-track{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* IMÁGENES */
+.carousel-track img{
+    width: 220px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* FLECHAS */
+.arrow{
+    background: #0a7cff;
+    color: white;
+    border: none;
+    font-size: 22px;
+    padding: 10px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.arrow:hover{
+    background: #084fa3;
+}
+
+
+/* ===== FOOTER ===== */
+footer{
+    margin-top:40px;
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.informacion {
+
+text-align: center;
+font-family: 'Times New Roman', Times, serif;
+}
+.temas {
+    list-style-position: inside;
+    text-align: center;
+    padding: 0;
+    margin:20px auto
+}
+.carrito{
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.carrito ul{
+    list-style: none;
+    padding: 0;
+}
+
+.carrito li{
+    margin: 8px 0;
+}
+
+.total{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pagar{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #009ee3;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.carrito{
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.carrito ul{
+    list-style: none;
+    padding: 0;
+}
+
+.carrito li{
+    margin: 8px 0;
+}
+
+.total{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pagar{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #009ee3;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== BANNER CON TEXTO ===== -->
+<div class="banner">
+    <img src="https://i.pinimg.com/originals/5f/08/50/5f08505655b858d52ea4ef07a6fa58d5.gif" alt="Banner">
+    <div class="banner-texto">
+        <h1>Asesorias AG</h1>
+        <p>Asesoria con profesionales</p>
+        <p> para futuros profesionales</p>
+    </div>
+</div>
+
+<div class="informacion">
+     <p>En "Asesorias AG" nos enfocamos en la creacion de herramientas claras y consisas que permitan que cualquier persona que adquiera nuestros servicios se especialice 
+        en el area inmobiliaria y de servicios Jurídicos. Con estos cursos el usuario debera aprender los siguientes temas:
+     </p>
+</div>
+<div class="temas">
+     <ul>
+        <li>Aprender sobre el uso de creditos inmobiliarios</li>
+        <li>La importancia de una Póliza Jurídica</li>
+        <li>la importancia de una inmobiliaria en un proceso</li>
+        <li>Como encontrar un comprador/vendedor adecuado</li>
+        <li>Zonas de interes social para una venta de propiedad</li>
+    
+     </ul>
+</div>
+
+<div class="container">
+
+    <div class="servicios">
+
+        <!-- SERVICIO 1 -->
+        <div class="servicio">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiBMuKrAE-pHacOeeOmORIZIdonHpxQImIxw&s">
+            <div class="servicio-header" onclick="toggleServicio(this)">
+                Servicio 1
+                <span class="flecha">⬇️</span>
+            </div>
+            <div class="servicio-contenido">
+                <p>Descripción detallada del servicio ofrecido.</p>
+                <div class="precio">$1,200 MXN</div>
+                <button class="comprar" onclick="agregarCarrito('Servicio 1', 1200)">
+    Agregar al carrito
+</button>
+
+            </div>
+        </div>
+
+        <!-- SERVICIO 2 -->
+        <div class="servicio">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq0E2O15GklZgbu3xHZKkGtYs9iSLK06RHQw&s">
+            <div class="servicio-header" onclick="toggleServicio(this)">
+                Servicio 2
+                <span class="flecha">⬇️</span>
+            </div>
+            <div class="servicio-contenido">
+                <p>Beneficios, alcance y detalles del servicio.</p>
+                <div class="precio">$2,500 MXN</div>
+                <button class="comprar" onclick="agregarCarrito('Servicio 2', 2500)">
+    Agregar al carrito
+</button>
+
+            </div>
+        </div>
+
+        <!-- SERVICIO 3 -->
+        <div class="servicio">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4pOp92Ya6Lu80jfreWN91Hs0V9hv08APDlg&s">
+            <div class="servicio-header" onclick="toggleServicio(this)">
+                Servicio 3
+                <span class="flecha">⬇️</span>
+            </div>
+            <div class="servicio-contenido">
+                <p>Información completa y condiciones.</p>
+                <div class="precio">$3,800 MXN</div>
+                <button class="comprar" onclick="agregarCarrito('Servicio 3', 3800)">
+    Agregar al carrito
+</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ===== CARRUSEL MANUAL ===== -->
+<div class="carousel-container">
+    <center><h2>Visita nuestros aliados</h2></center>
+
+    <div class="carousel">
+        <button class="arrow left" onclick="moveCarousel(-1)">❮</button>
+
+        <div class="carousel-track" id="carouselTrack">
+            <a href="https://arrounioninmobiliaria.com.mx/" target="_blank">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxB7AegypVxOiAoWA8ltHF-EBwItkM8kJlqA&s">
+            </a>
+            <a href="https://polizaspatrimoniales.com/" target="_blank">
+                <img src="https://img1.wsimg.com/isteam/ip/57414f88-ece8-4b73-a471-39669a6364f7/LOGO%20ORIGINAL.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25">
+            </a>
+            <a href="https://www.youtube.com/feed/subscriptions/UCFa8-rpCVehjt_bZxHQboIA" target="_blank">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLMnUGT4_pXjSGY3tqUccQfSFd16cYJg24Bw&s">
+            </a>
+            <a href="https://www.sega.com/sonic-the-hedgehog" target="_blank">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWtLFzkZDfeUhEeeVB9athJINgpkqn0HytIQ&s">
+            </a>
+        </div>
+
+        <button class="arrow right" onclick="moveCarousel(1)">❯</button>
+    </div>
+</div>
+
+<!-- ===== CARRITO ===== -->
+<div class="carrito">
+    <h2>🛒 Carrito</h2>
+    <ul id="listaCarrito"></ul>
+    <p class="total">Total: $<span id="total">0</span> MXN</p>
+
+    <a id="pagarMP" class="pagar" href="#" target="_blank">
+        Pagar con Mercado Pago
+    </a>
+</div>
+
+
+<footer>
+    © 2026 - Todos los derechos reservados
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a class="whatsapp-float" href="https://wa.me/521XXXXXXXXXX" target="_blank">
+💬
+</a>
+
+<script>
+function toggleServicio(header){
+    const servicio = header.parentElement;
+    const servicios = document.querySelectorAll(".servicio");
+
+    servicios.forEach(s => {
+        if(s !== servicio){
+            s.classList.remove("activo");
+        }
+    });
+
+    servicio.classList.toggle("activo");
+}
+</script>
+
+<script>
+function moveCarousel(direction){
+    const track = document.getElementById("carouselTrack");
+    const scrollAmount = 240; // tamaño del desplazamiento
+    track.scrollLeft += direction * scrollAmount;
+}
+</script>
+<script>
+const track = document.getElementById("carouselTrack");
+let startX = 0;
+let isDown = false;
+
+track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchmove", (e) => {
+    if (!startX) return;
+
+    let currentX = e.touches[0].clientX;
+    let diff = startX - currentX;
+
+    if (Math.abs(diff) > 50) {
+        track.scrollLeft += diff;
+        startX = currentX;
+    }
+});
+
+track.addEventListener("touchend", () => {
+    startX = 0;
+});
+</script>
+
+<script>
+let carrito = [];
+let total = 0;
+
+function agregarCarrito(nombre, precio){
+    carrito.push({nombre, precio});
+    total += precio;
+    actualizarCarrito();
+}
+
+function actualizarCarrito(){
+    const lista = document.getElementById("listaCarrito");
+    const totalSpan = document.getElementById("total");
+    lista.innerHTML = "";
+
+    carrito.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.nombre + " - $" + item.precio;
+        lista.appendChild(li);
+    });
+
+    totalSpan.textContent = total;
+
+    // LINK DE MERCADO PAGO (link de pago)
+    document.getElementById("pagarMP").href =
+        "https://link.mercadopago.com.mx/TULINKDEMP";
+}
+</script>
+
+
+</body>
+</html>
